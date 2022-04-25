@@ -33,6 +33,9 @@ function onFormSubmit(event) {
     //     console.log(input.value.length === 0);
     // });
     // console.log(checkInputs);
+    
+    // Почему console.log(input.value.length === 0); выводит верное значение - true|false
+    // но console.log(checkInputs); - всегда false?
 
     // Если в каком-то инпуте длина данных = нулю, вызываем алерт. 
     // Если нет - создаем объект с данными
