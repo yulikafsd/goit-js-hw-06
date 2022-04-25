@@ -15,7 +15,7 @@ const getRandomHexColor = function () {
     .padStart(6, 0)}`;
 }
 
-refs.createBtnEl.addEventListener('click', function createBoxes (amount) {
+refs.createBtnEl.addEventListener('click', function createBoxes(amount) {
   amount = refs.inputEl.value;
 
   // Для удобства проверки результата:
@@ -28,7 +28,7 @@ refs.createBtnEl.addEventListener('click', function createBoxes (amount) {
   const boxesMarkup = arrNumbers
     .map((arrNumber) => arrNumber)
     .join("");
-  
+
   refs.boxesEl.innerHTML = boxesMarkup;
 
   // Перебрать дивы-дети boxes и задать им размер и цвет... Как???
@@ -38,11 +38,10 @@ refs.createBtnEl.addEventListener('click', function createBoxes (amount) {
   // box.style.width = j + "px";
   // box.style.height = j + "px";
   // j += 10;
-  
+
 });
 
-refs.destroyBtnEl.addEventListener('click', function destroyBoxes () {
+refs.destroyBtnEl.addEventListener('click', function destroyBoxes() {
   refs.boxesEl.innerHTML = "";
   refs.inputEl.value = "";
-  console.log(refs.boxesEl);
 });
