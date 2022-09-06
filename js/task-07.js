@@ -1,10 +1,12 @@
 const refs = {
-    slider: document.querySelector('#font-size-control'),
-    text: document.querySelector('#text'),
+  inputEl: document.querySelector('input#font-size-control'),
+  textEl: document.querySelector('span#text'),
 };
 
-refs.slider.addEventListener('input', onInputResize);
+refs.inputEl.value = 16;
+
+refs.inputEl.addEventListener('input', onInputResize);
 
 function onInputResize() {
-    refs.text.style.fontSize = refs.slider.value + "px";
-};
+  refs.textEl.style.fontSize = refs.inputEl.value + 'px';
+}

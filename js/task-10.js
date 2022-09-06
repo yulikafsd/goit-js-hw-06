@@ -1,47 +1,47 @@
-// Розміри найпершого <div> - 30px на 30px.
-// Кожен елемент після першого повинен бути ширшим і вищим від попереднього на 10px.
-// Всі елементи повинні мати випадковий колір фону у форматі HEX. 
-
 const refs = {
-  inputEl: document.querySelector('[type="number"]'),
-  createBtnEl: document.querySelector('[data-create]'),
-  destroyBtnEl: document.querySelector('[data-destroy]'),
-  boxesEl: document.querySelector('#boxes'),
+  boxesEl: document.querySelector('div#boxes'),
+  inputEl: document.querySelector('input[type="number"]'),
+  createBtn: document.querySelector('button[data-create]'),
+  destroyBtn: document.querySelector('button[data-destroy]'),
 };
 
-const getRandomHexColor = function () {
+refs.createBtn.addEventListener('click', onClickCreateBoxes);
+refs.destroyBtn.addEventListener('click', onClickDestroyBoxes);
+
+let boxWidth = 30;
+let boxHeight = 30;
+const boxStep = 10;
+
+function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215)
     .toString(16)
     .padStart(6, 0)}`;
 }
 
-refs.createBtnEl.addEventListener('click', function createBoxes (amount) {
+function onClickCreateBoxes(amount) {
+  let boxesMarkup = [];
   amount = refs.inputEl.value;
 
-  // Для удобства проверки результата:
-  const arrNumbers = [];
   for (let i = 0; i < amount; i += 1) {
-    const divBox = `<div>DivBox${i + 1}</div>`;
-    arrNumbers.push(divBox);
-  };
+    const boxEl = document.createElement('div');
+    boxEl.style.backgroundColor = getRandomHexColor();
+    boxEl.style.width = boxWidth + 'px';
+    boxEl.style.height = boxHeight + 'px';
+    boxesMarkup.push(boxEl);
+    boxWidth += boxStep;
+    boxHeight += boxStep;
+  }
+  refs.boxesEl.append(...boxesMarkup);
+}
 
-  const boxesMarkup = arrNumbers
-    .map((arrNumber) => arrNumber)
-    .join("");
-  
-  refs.boxesEl.innerHTML = boxesMarkup;
+function onClickDestroyBoxes() {
+  refs.boxesEl.innerHTML = '';
+  boxWidth = 30;
+  boxHeight = 30;
+}
 
-  // Перебрать дивы-дети boxes и задать им размер и цвет... Как???
-  // let j = 30;
-  // const box = document.querySelector('[class="box${i+1}"]') - как перебирать?
-  // box.style.backgroundColor = getRandomHexColor;
-  // box.style.width = j + "px";
-  // box.style.height = j + "px";
-  // j += 10;
-  
-});
-
-refs.destroyBtnEl.addEventListener('click', function destroyBoxes () {
-  refs.boxesEl.innerHTML = "";
-  refs.inputEl.value = "";
-});
+// можно через шаблонную строку
+// const boxEl = `<div></div>`;
+// const boxesMarkup = arrNumbers.map(arrNumber => arrNumber).join('');
+// refs.boxesEl.innerHTML = boxesMarkup;
+// Как тогда стилизовать?

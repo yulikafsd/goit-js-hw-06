@@ -13,22 +13,19 @@ const images = [
   },
 ];
 
-const galleryListEl = document.querySelector(".gallery");
-// galleryListEl.style.listStyle = "none"; - перенесла в CSS + добавила базовые стили
-console.log(galleryListEl);
+const galleryListEl = document.querySelector('ul.gallery');
 
-const makeGalleryImage = images => {
-  return images.map(image => {
-    const galleryImageEl = document.createElement('li');
-    galleryImageEl.insertAdjacentHTML("afterbegin", "<img>");
-    galleryImageEl.firstChild.src = image.url;
-    galleryImageEl.firstChild.alt = image.alt;
-    galleryImageEl.firstChild.style.height = '250px';
-    return galleryImageEl;
-  })
+// Перенесла це в css + додала базові стилі:
+// galleryListEl.style.listStyle = 'none';
+// galleryListEl.style.display = 'flex';
+
+const makeImagesMarkup = images => {
+  return images
+    .map(({ url, alt }) => {
+      return `<li><img src="${url}" alt="${alt}" class="gallery__image"/></li>`;
+    })
+    .join('');
 };
 
-const elements = makeGalleryImage(images);
-
-galleryListEl.append(...elements);
-
+const galleryMarkup = makeImagesMarkup(images);
+galleryListEl.insertAdjacentHTML('afterbegin', galleryMarkup);

@@ -32,6 +32,7 @@ ul.gallery li:not(:last-child) {
   margin-right: 30px;
 }
 
-ul.gallery img {
+.gallery__image {
   display: block;
+  max-height: 250px;
 }
