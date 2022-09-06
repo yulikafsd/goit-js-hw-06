@@ -36,6 +36,7 @@ function onClickCreateBoxes(amount) {
 
 function onClickDestroyBoxes() {
   refs.boxesEl.innerHTML = '';
+  refs.inputEl.value = '';
   boxWidth = 30;
   boxHeight = 30;
 }
