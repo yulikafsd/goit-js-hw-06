@@ -31,6 +31,7 @@ function onClickCreateBoxes(amount) {
     boxWidth += boxStep;
     boxHeight += boxStep;
   }
+
   refs.boxesEl.append(...boxesMarkup);
 }
 

@@ -7,16 +7,16 @@ const refs = {
   output: document.querySelector('#name-output'),
 };
 
-refs.inputEl.addEventListener('input', printName);
+refs.inputEl.addEventListener('input', onInputPrintName);
 
-function printName(event) {
+function onInputPrintName(event) {
   event.currentTarget.value !== ''
-    ? (refs.output.textContent = event.currentTarget.value)
+    ? (refs.output.textContent = event.currentTarget.value.trim())
     : (refs.output.textContent = 'Anonymous');
 }
 
 // Другой вариант:
-// function printName() {
+// function onInputPrintName() {
 //   if (refs.inputEl.value === '') {
 //     return (refs.output.textContent = 'Anonymous');
 //   }

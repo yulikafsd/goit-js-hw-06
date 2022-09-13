@@ -1,12 +1,15 @@
 const inputEl = document.querySelector('#validation-input');
 const dataLength = Number(inputEl.dataset.length);
 
-inputEl.addEventListener('blur', onBlur);
+inputEl.addEventListener('blur', onBlurChangeClass);
 
-function onBlur(event) {
+function onBlurChangeClass(event) {
   const eventClass = event.currentTarget.classList;
-
-  if (event.currentTarget.value.length < dataLength) {
+  const eventTrimmedValueLength = event.currentTarget.value.trim().length;
+  if (
+    eventTrimmedValueLength < dataLength ||
+    eventTrimmedValueLength > dataLength
+  ) {
     if (eventClass.contains('valid')) {
       eventClass.replace('valid', 'invalid');
     }
@@ -16,7 +19,7 @@ function onBlur(event) {
     }
   }
 
-  if (event.currentTarget.value.length >= dataLength) {
+  if (eventTrimmedValueLength === dataLength) {
     if (eventClass.contains('invalid')) {
       eventClass.replace('invalid', 'valid');
     }
@@ -32,7 +35,7 @@ function onBlur(event) {
 
 // inputEl.addEventListener('focus', onFocus);
 
-// function onBlur(event) {
+// function onBlurChangeClass(event) {
 //   const eventClass = event.currentTarget.classList;
 
 //   event.currentTarget.value.length < dataLength
