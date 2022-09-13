@@ -8,8 +8,7 @@ const refs = {
 refs.createBtn.addEventListener('click', onClickCreateBoxes);
 refs.destroyBtn.addEventListener('click', onClickDestroyBoxes);
 
-let boxWidth = 30;
-let boxHeight = 30;
+let boxSize = 30;
 const boxStep = 10;
 
 function getRandomHexColor() {
@@ -25,11 +24,10 @@ function onClickCreateBoxes(amount) {
   for (let i = 0; i < amount; i += 1) {
     const boxEl = document.createElement('div');
     boxEl.style.backgroundColor = getRandomHexColor();
-    boxEl.style.width = boxWidth + 'px';
-    boxEl.style.height = boxHeight + 'px';
+    boxEl.style.width = boxSize + 'px';
+    boxEl.style.height = boxSize + 'px';
     boxesMarkup.push(boxEl);
-    boxWidth += boxStep;
-    boxHeight += boxStep;
+    boxSize += boxStep;
   }
 
   refs.boxesEl.append(...boxesMarkup);
@@ -38,8 +36,7 @@ function onClickCreateBoxes(amount) {
 function onClickDestroyBoxes() {
   refs.boxesEl.innerHTML = '';
   refs.inputEl.value = '';
-  boxWidth = 30;
-  boxHeight = 30;
+  boxSize = 30;
 }
 
 // можно через шаблонную строку
